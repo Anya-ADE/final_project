@@ -19,6 +19,18 @@ public:
     TriePSearch() {
         root = make_unique<TriePrefix>();
     }
+
+    void insert(const string& word) {
+        TriePrefix* curr = root.get();
+        for (char a : word) {
+            if (curr->child.find(a) == curr->child.end()) {
+                curr->child[a] = make_unique<TriePrefix>();
+            }
+            curr = curr->child[a].get();
+        }
+        curr->EndOfWord = true;
+    }
+
 };
 
 int main() {
