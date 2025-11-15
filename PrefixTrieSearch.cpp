@@ -20,17 +20,6 @@ public:
         root = make_unique<TriePrefix>();
     }
 
-    void insert(const string& word) {
-        TriePrefix* curr = root.get();
-        for (char a : word) {
-            if (curr->child.find(a) == curr->child.end()) {
-                curr->child[a] = make_unique<TriePrefix>();
-            }
-            curr = curr->child[a].get();
-        }
-        curr->EndOfWord = true;
-    }
-
      void insert(const string& word) {
         TriePrefix* curr = root.get();
         for (char a : word) {
@@ -67,7 +56,29 @@ public:
 
 };
 
-int main() {
+    int main() {
+    TriePSearch trie;
 
+
+    trie.insert("Black Jaguar T-shirt");
+    trie.insert("Blazer for UB's 25th Anniversy");
+    trie.insert("Kinkajou UB T-Shirt Special");
+    trie.insert("Bland UB Hoodie");
+    trie.insert("Jaguar Pride T-shirt");
+    trie.insert("Scented UB Candle");
+    trie.insert("Jabiru UB T-shirt Special");
+    trie.insert("Black Jaguar Joggers");
+    trie.insert("Manatee UB T-Shirt Special");
+    trie.insert("Scarlet Macaw UB T-Shirt Special");
+
+
+    cout << "\nSearch 'Black': " << (trie.search("Black") ? "True" : "False") << endl;
+    cout << "Search 'Bla': " << (trie.search("Bla") ? "True" : "False") << endl;
+    cout << "Search 'Black Jaguar T-shirt': " << (trie.search("Black Jaguar T-shirt") ? "True" : "False") << endl;    
+    cout << "Search 'Jaguar': " << (trie.search("Jaguar") ? "True" : "False") << endl;    
+    cout << "\nStarts with 'Ja': " << (trie.beginsWith("Ja") ? "True" : "False") << endl;
+    cout << "Starts with 'Bla': " << (trie.beginsWith("Bla") ? "True" : "False") << endl;
+    cout << "Starts with 'Sc': " << (trie.beginsWith("Sc") ? "True" : "False") << endl;
+    cout << "Starts with 'Ig': " << (trie.beginsWith("Ig") ? "True" : "False") << endl;
     return 0;
 }
